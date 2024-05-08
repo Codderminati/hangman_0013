@@ -25,5 +25,23 @@ while True:
         print(f"Game Over! The movies was '{movie_to_guess}'.")
         break
 
-    guess = 
+    guess = input("Guess a letter: ").upper()
+
+    if len(guess) != 1 or not guess.isalpha():
+        print("Invalid input. Please enter a single letter.")
+        continue
+
+    if guess in guessed_letters:
+        print(f"You already guessed '{guess}'. Try a different letter.")
+        continue
+
+    guessed_letters.append(guess)
+
+    if guess in movie_to_guess.upper():
+        indices = [i for i, letter in enumerate(movie_to_guess.upper()) if letter == guess]
+        for index in indices:
+            display[index] = movie_to_guess[index]
+    else:
+        remaining_lives -= 1
+        print(f"'{guess}' is not in the movie title.")
 
